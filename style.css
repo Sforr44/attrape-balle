@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #222;
+  color: #eee;
+  margin: 0;
+  padding: 20px;
+}
+
+canvas {
+  background-color: #111;
+  border: 2px solid #eee;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.mobile-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-btn {
+  font-size: 24px;
+  margin: 5px;
+  padding: 15px 20px;
+  background-color: #333;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.control-btn:active {
+  background-color: #555;
+}
+
+@media (min-width: 800px) {
+  .mobile-controls {
+    display: none; /* Cacher sur grand écran */
+  }
+}
