@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Attrape la balle</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Attrape la balle</h1>
   <p>Utilise les flèches ou les boutons pour attraper la balle rouge.</p>
-  <canvas id="gameCanvas" width="600" height="400"></canvas>
-  <p>Score : <span id="score">0</span></p>
 
-  <!-- BOUTONS TACTILES -->
-  <div class="mobile-controls">
-    <button class="control-btn" id="up">↑</button>
-    <div>
-      <button class="control-btn" id="left">←</button>
-      <button class="control-btn" id="down">↓</button>
-      <button class="control-btn" id="right">→</button>
-    </div>
+  <div class="infos">
+    <span>Score : <strong id="score">0</strong></span>
+    <span>Temps de jeu : <strong id="timer">00:00</strong></span>
+  </div>
+
+  <canvas id="game" width="400" height="400"></canvas><br>
+
+  <div class="pad">
+    <button class="up" data-dir="up">↑</button>
+    <button class="left" data-dir="left">←</button>
+    <button class="down" data-dir="down">↓</button>
+    <button class="right" data-dir="right">→</button>
   </div>
 
   <script src="script.js"></script>
