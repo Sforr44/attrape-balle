@@ -1,7 +1,7 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const scoreEl = document.getElementById('score');
-const timerEl = document.getElementById('timer');
+const timerEl = document.getElementById('timer'); // peut être null si l'ancien HTML est encore en ligne
 
 const R = 20;        // rayon de Pacman
 const BALL_R = 9;    // rayon de la balle
@@ -50,13 +50,17 @@ function saveTime() {
   }
 }
 
+function showTime() {
+  if (timerEl) timerEl.textContent = formatTime(totalMs);
+}
+
 function updateTimer(now) {
   // le temps ne compte que quand l'onglet est visible
   if (!document.hidden) {
     totalMs += now - lastTick;
   }
   lastTick = now;
-  timerEl.textContent = formatTime(totalMs);
+  showTime();
 }
 
 setInterval(saveTime, 1000);
@@ -66,7 +70,7 @@ document.addEventListener('visibilitychange', () => {
   saveTime();
 });
 
-timerEl.textContent = formatTime(totalMs);
+showTime();
 
 /* ---------- Son (généré en local avec Web Audio, aucun fichier) ---------- */
 let audioCtx = null;
@@ -145,7 +149,7 @@ function update() {
 
   if (Math.hypot(pac.x - ball.x, pac.y - ball.y) < R + BALL_R - 4) {
     score++;
-    scoreEl.textContent = score;
+    if (scoreEl) scoreEl.textContent = score;
     mouthOpenUntil = performance.now() + 350;
     chompSound();
     ball = randomBall();
@@ -195,8 +199,8 @@ function draw(now) {
 
 function loop(now) {
   update();
-  updateTimer(now);
-  draw(now);
+  draw(now);        // le dessin passe en premier
+  updateTimer(now); // le timer ne peut plus bloquer l'affichage
   requestAnimationFrame(loop);
 }
 
